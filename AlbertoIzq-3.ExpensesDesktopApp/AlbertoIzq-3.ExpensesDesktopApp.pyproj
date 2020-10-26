@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>38071de8-d2c3-4136-9095-73d1b8b4abd7</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>AlbertoIzq_3.ExpensesDesktopApp.py</StartupFile>
+    <StartupFile>frontend.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AlbertoIzq_3.ExpensesDesktopApp.py" />
+    <Compile Include="backend.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="frontend.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
