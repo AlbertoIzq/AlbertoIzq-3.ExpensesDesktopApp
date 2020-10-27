@@ -45,7 +45,6 @@ def update(id, year, month, day, category, value, concept):
     conn.commit()
     conn.close()
 
-
 connect() # This way, this function will run everytime you run frontend when importing backend into frontend script
 
 #print(view())

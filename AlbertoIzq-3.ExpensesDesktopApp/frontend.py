@@ -1,4 +1,12 @@
 from tkinter import *
+import backend
+
+def view_command(): # Wrapper function
+    list1.delete(0, END) # Firstly you have to delete the list
+    for row in backend.view():
+        list1.insert(END, row) # Every new row is inserted at the end of the list box
+
+
 
 window = Tk()
 
@@ -55,7 +63,7 @@ sb1 = Scrollbar(window)
 sb1.grid(row = 2, column = 8, rowspan = 6)
 
 
-b1 = Button(window, text = "View All", width = 12)
+b1 = Button(window, text = "View All", width = 12, command = view_command)
 b1.grid(row = 2, column = 9)
 
 b2 = Button(window, text = "Search entry", width = 12)
