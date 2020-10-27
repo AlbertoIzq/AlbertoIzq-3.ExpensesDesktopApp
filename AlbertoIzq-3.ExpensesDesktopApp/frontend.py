@@ -6,6 +6,11 @@ def view_command(): # Wrapper function
     for row in backend.view():
         list1.insert(END, row) # Every new row is inserted at the end of the list box
 
+def search_command():
+    list1.delete(0, END)
+    for row in backend.search(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()):
+        list1.insert(END, row) # Every new row is inserted at the end of the list box
+
 
 
 window = Tk()
@@ -66,7 +71,7 @@ sb1.grid(row = 2, column = 8, rowspan = 6)
 b1 = Button(window, text = "View All", width = 12, command = view_command)
 b1.grid(row = 2, column = 9)
 
-b2 = Button(window, text = "Search entry", width = 12)
+b2 = Button(window, text = "Search entry", width = 12, command = search_command)
 b2.grid(row = 3, column = 9)
 
 b3 = Button(window, text = "Add entry", width = 12)
