@@ -21,10 +21,29 @@ def get_selected_row(event):
     index = list1.curselection()[0]
     selected_tuple = list1.get(index)
 
+    # Update entry fields with selected row in listbox
+    e1.delete(0, END)
+    e1.insert(END, selected_tuple[1])
+    e2.delete(0, END)
+    e2.insert(END, selected_tuple[2])
+    e3.delete(0, END)
+    e3.insert(END, selected_tuple[3])
+    e4.delete(0, END)
+    e4.insert(END, selected_tuple[4])
+    e5.delete(0, END)
+    e5.insert(END, selected_tuple[5])
+    e6.delete(0, END)
+    e6.insert(END, selected_tuple[6])
+
 def delete_command():
     backend.delete(selected_tuple[0])
     view_command() # To see how the deleted selection was in fact deleted
 
+def update_command():
+    backend.update(selected_tuple[0], year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
+    view_command() # To see how the deleted selection was in fact deleted
+
+print(backend.view())
 
 window = Tk()
 
@@ -62,16 +81,16 @@ e3 = Entry(window, textvariable = day_text, width = 2)
 e3.grid(row = 0, column = 5)
 
 category_text = StringVar()
-e3 = Entry(window, textvariable = category_text)
-e3.grid(row = 0, column = 7)
+e4 = Entry(window, textvariable = category_text)
+e4.grid(row = 0, column = 7)
 
 value_text = StringVar()
-e4 = Entry(window, textvariable = value_text, width = 15)
-e4.grid(row = 0, column = 9)
+e5 = Entry(window, textvariable = value_text, width = 15)
+e5.grid(row = 0, column = 9)
 
 concept_text = StringVar()
-e5 = Entry(window, textvariable = concept_text, width = 76)
-e5.grid(row = 1, column = 1, columnspan = 9)
+e6 = Entry(window, textvariable = concept_text, width = 76)
+e6.grid(row = 1, column = 1, columnspan = 9)
 
 
 list1 = Listbox(window, height = 6, width = 60)
@@ -92,7 +111,7 @@ b2.grid(row = 3, column = 9)
 b3 = Button(window, text = "Add entry", width = 12, command = add_command)
 b3.grid(row = 4, column = 9)
 
-b4 = Button(window, text = "Update selected", width = 12)
+b4 = Button(window, text = "Update selected", width = 12, command = update_command)
 b4.grid(row = 5, column = 9)
 
 b5 = Button(window, text = "Delete selected", width = 12, command = delete_command)
