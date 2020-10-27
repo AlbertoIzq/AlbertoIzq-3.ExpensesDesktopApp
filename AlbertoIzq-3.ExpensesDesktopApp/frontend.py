@@ -1,20 +1,13 @@
 from tkinter import *
 import backend
 
-def view_command(): # Wrapper function
-    list1.delete(0, END) # Firstly you have to delete the list
-    for row in backend.view():
-        list1.insert(END, row) # Every new row is inserted at the end of the list box
-
-def search_command():
-    list1.delete(0, END)
-    for row in backend.search(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()):
-        list1.insert(END, row) # Every new row is inserted at the end of the list box
-
-def add_command():
-    backend.insert(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
-    list1.delete(0, END)
-    list1.insert(END, (year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()))
+CATEGORY = [
+"Restaurant",
+"Bar",
+"Supermarket",
+"Transport",
+"Other"
+]
 
 def get_selected_row(event):
     try:
@@ -29,14 +22,28 @@ def get_selected_row(event):
         e2.insert(END, selected_tuple[2])
         e3.delete(0, END)
         e3.insert(END, selected_tuple[3])
-        e4.delete(0, END)
-        e4.insert(END, selected_tuple[4])
+        category_text.set(selected_tuple[4]) # default value
         e5.delete(0, END)
         e5.insert(END, selected_tuple[5])
         e6.delete(0, END)
         e6.insert(END, selected_tuple[6])
     except IndexError:
         pass
+
+def view_command(): # Wrapper function
+    list1.delete(0, END) # Firstly you have to delete the list
+    for row in backend.view():
+        list1.insert(END, row) # Every new row is inserted at the end of the list box
+
+def search_command():
+    list1.delete(0, END)
+    for row in backend.search(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()):
+        list1.insert(END, row) # Every new row is inserted at the end of the list box
+
+def add_command():
+    backend.insert(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
+    list1.delete(0, END)
+    list1.insert(END, (year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()))
 
 def delete_command():
     backend.delete(selected_tuple[0])
@@ -82,8 +89,9 @@ e3 = Entry(window, textvariable = day_text, width = 2)
 e3.grid(row = 0, column = 5)
 
 category_text = StringVar()
-e4 = Entry(window, textvariable = category_text)
-e4.grid(row = 0, column = 7)
+o1 = OptionMenu(window, category_text, *CATEGORY)
+o1.configure(width = 12)
+o1.grid(row = 0, column = 7)
 
 value_text = StringVar()
 e5 = Entry(window, textvariable = value_text, width = 15)
