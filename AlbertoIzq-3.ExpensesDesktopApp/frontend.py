@@ -1,6 +1,10 @@
 from tkinter import *
 import backend
 
+MONTH = list(range(1, 13))
+
+DAY = list(range(1, 32))
+
 CATEGORY = [
 "Restaurant",
 "Bar",
@@ -18,11 +22,9 @@ def get_selected_row(event):
         # Update entry fields with selected row in listbox
         e1.delete(0, END)
         e1.insert(END, selected_tuple[1])
-        e2.delete(0, END)
-        e2.insert(END, selected_tuple[2])
-        e3.delete(0, END)
-        e3.insert(END, selected_tuple[3])
-        category_text.set(selected_tuple[4]) # default value
+        month_text.set(selected_tuple[2])
+        day_text.set(selected_tuple[3])
+        category_text.set(selected_tuple[4])
         e5.delete(0, END)
         e5.insert(END, selected_tuple[5])
         e6.delete(0, END)
@@ -81,24 +83,26 @@ e1 = Entry(window, textvariable = year_text, width = 4)
 e1.grid(row = 0, column = 1)
 
 month_text = StringVar()
-e2 = Entry(window, textvariable = month_text, width = 2)
-e2.grid(row = 0, column = 3)
+o1 = OptionMenu(window, month_text, *MONTH)
+o1.configure(width = 2)
+o1.grid(row = 0, column = 3)
 
 day_text = StringVar()
-e3 = Entry(window, textvariable = day_text, width = 2)
-e3.grid(row = 0, column = 5)
+o2 = OptionMenu(window, day_text, *DAY)
+o2.configure(width = 2)
+o2.grid(row = 0, column = 5)
 
 category_text = StringVar()
-o1 = OptionMenu(window, category_text, *CATEGORY)
-o1.configure(width = 12)
-o1.grid(row = 0, column = 7)
+o3 = OptionMenu(window, category_text, *CATEGORY)
+o3.configure(width = 12)
+o3.grid(row = 0, column = 7)
 
 value_text = StringVar()
 e5 = Entry(window, textvariable = value_text, width = 15)
 e5.grid(row = 0, column = 9)
 
 concept_text = StringVar()
-e6 = Entry(window, textvariable = concept_text, width = 76)
+e6 = Entry(window, textvariable = concept_text, width = 84)
 e6.grid(row = 1, column = 1, columnspan = 9)
 
 
