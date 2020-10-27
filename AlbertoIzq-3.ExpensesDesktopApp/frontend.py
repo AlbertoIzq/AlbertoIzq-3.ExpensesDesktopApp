@@ -43,8 +43,6 @@ def update_command():
     backend.update(selected_tuple[0], year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
     view_command() # To see how the deleted selection was in fact deleted
 
-print(backend.view())
-
 window = Tk()
 
 window.title("Expenses manager")
@@ -117,7 +115,7 @@ b4.grid(row = 5, column = 9)
 b5 = Button(window, text = "Delete selected", width = 12, command = delete_command)
 b5.grid(row = 6, column = 9)
 
-b6 = Button(window, text = "Close", width = 12)
+b6 = Button(window, text = "Close", width = 12, command = window.destroy)
 b6.grid(row = 7, column = 9)
 
 window.mainloop()
