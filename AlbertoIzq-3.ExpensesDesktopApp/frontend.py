@@ -16,6 +16,14 @@ def add_command():
     list1.delete(0, END)
     list1.insert(END, (year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()))
 
+def get_selected_row(event):
+    global selected_tuple # You create a global variable that can be used outside of the function
+    index = list1.curselection()[0]
+    selected_tuple = list1.get(index)
+
+def delete_command():
+    backend.delete(selected_tuple[0])
+    view_command() # To see how the deleted selection was in fact deleted
 
 
 window = Tk()
@@ -72,6 +80,8 @@ list1.grid(row = 2, column = 0, rowspan = 6, columnspan = 8)
 sb1 = Scrollbar(window)
 sb1.grid(row = 2, column = 8, rowspan = 6)
 
+list1.bind('<<ListboxSelect>>', get_selected_row)
+
 
 b1 = Button(window, text = "View All", width = 12, command = view_command)
 b1.grid(row = 2, column = 9)
@@ -85,7 +95,7 @@ b3.grid(row = 4, column = 9)
 b4 = Button(window, text = "Update selected", width = 12)
 b4.grid(row = 5, column = 9)
 
-b5 = Button(window, text = "Delete selected", width = 12)
+b5 = Button(window, text = "Delete selected", width = 12, command = delete_command)
 b5.grid(row = 6, column = 9)
 
 b6 = Button(window, text = "Close", width = 12)
