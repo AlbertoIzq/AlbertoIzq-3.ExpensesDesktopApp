@@ -44,7 +44,7 @@ e4 = Entry(window, textvariable = value_text, width = 15)
 e4.grid(row = 0, column = 9)
 
 concept_text = StringVar()
-e5 = Entry(window, textvariable = concept_text, width = 75)
+e5 = Entry(window, textvariable = concept_text, width = 76)
 e5.grid(row = 1, column = 1, columnspan = 9)
 
 
