@@ -11,6 +11,11 @@ def search_command():
     for row in backend.search(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()):
         list1.insert(END, row) # Every new row is inserted at the end of the list box
 
+def add_command():
+    backend.insert(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
+    list1.delete(0, END)
+    list1.insert(END, (year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()))
+
 
 
 window = Tk()
@@ -74,7 +79,7 @@ b1.grid(row = 2, column = 9)
 b2 = Button(window, text = "Search entry", width = 12, command = search_command)
 b2.grid(row = 3, column = 9)
 
-b3 = Button(window, text = "Add entry", width = 12)
+b3 = Button(window, text = "Add entry", width = 12, command = add_command)
 b3.grid(row = 4, column = 9)
 
 b4 = Button(window, text = "Update selected", width = 12)
