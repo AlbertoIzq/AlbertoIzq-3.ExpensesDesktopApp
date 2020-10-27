@@ -17,23 +17,26 @@ def add_command():
     list1.insert(END, (year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()))
 
 def get_selected_row(event):
-    global selected_tuple # You create a global variable that can be used outside of the function
-    index = list1.curselection()[0]
-    selected_tuple = list1.get(index)
+    try:
+        global selected_tuple # You create a global variable that can be used outside of the function
+        index = list1.curselection()[0]
+        selected_tuple = list1.get(index)
 
-    # Update entry fields with selected row in listbox
-    e1.delete(0, END)
-    e1.insert(END, selected_tuple[1])
-    e2.delete(0, END)
-    e2.insert(END, selected_tuple[2])
-    e3.delete(0, END)
-    e3.insert(END, selected_tuple[3])
-    e4.delete(0, END)
-    e4.insert(END, selected_tuple[4])
-    e5.delete(0, END)
-    e5.insert(END, selected_tuple[5])
-    e6.delete(0, END)
-    e6.insert(END, selected_tuple[6])
+        # Update entry fields with selected row in listbox
+        e1.delete(0, END)
+        e1.insert(END, selected_tuple[1])
+        e2.delete(0, END)
+        e2.insert(END, selected_tuple[2])
+        e3.delete(0, END)
+        e3.insert(END, selected_tuple[3])
+        e4.delete(0, END)
+        e4.insert(END, selected_tuple[4])
+        e5.delete(0, END)
+        e5.insert(END, selected_tuple[5])
+        e6.delete(0, END)
+        e6.insert(END, selected_tuple[6])
+    except IndexError:
+        pass
 
 def delete_command():
     backend.delete(selected_tuple[0])
