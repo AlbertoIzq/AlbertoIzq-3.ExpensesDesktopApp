@@ -2,10 +2,13 @@ from tkinter import *
 import backend
 
 MONTH = list(range(1, 13))
+MONTH.insert(0, "")
 
 DAY = list(range(1, 32))
+DAY.insert(0, "")
 
 CATEGORY = [
+"",
 "Restaurant",
 "Bar",
 "Supermarket",
@@ -46,6 +49,7 @@ def add_command():
     backend.insert(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
     list1.delete(0, END)
     list1.insert(END, (year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()))
+    view_command() # To see how the added entry was in fact added
 
 def delete_command():
     backend.delete(selected_tuple[0])
