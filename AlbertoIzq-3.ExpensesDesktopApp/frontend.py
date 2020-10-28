@@ -1,5 +1,7 @@
 from tkinter import *
-import backend
+from backend import Database
+
+database = Database("expenses.db") # database object is an instance of Database class
 
 MONTH = list(range(1, 13))
 MONTH.insert(0, "")
@@ -37,26 +39,26 @@ def get_selected_row(event):
 
 def view_command(): # Wrapper function
     list1.delete(0, END) # Firstly you have to delete the list
-    for row in backend.view():
+    for row in database.view():
         list1.insert(END, row) # Every new row is inserted at the end of the list box
 
 def search_command():
     list1.delete(0, END)
-    for row in backend.search(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()):
+    for row in database.search(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()):
         list1.insert(END, row) # Every new row is inserted at the end of the list box
 
 def add_command():
-    backend.insert(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
+    database.insert(year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
     list1.delete(0, END)
     list1.insert(END, (year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get()))
     view_command() # To see how the added entry was in fact added
 
 def delete_command():
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
     view_command() # To see how the deleted selection was in fact deleted
 
 def update_command():
-    backend.update(selected_tuple[0], year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
+    database.update(selected_tuple[0], year_text.get(), month_text.get(), day_text.get(), category_text.get(), value_text.get(), concept_text.get())
     view_command() # To see how the deleted selection was in fact deleted
 
 window = Tk()
