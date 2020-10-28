@@ -8,6 +8,8 @@ def connect():
     conn.close()
 
 def insert(year, month, day, category, value, concept):
+    if not isinstance(year, int) or not isinstance(value, float): # If year is not an int or value is not a real number, then skip inserting
+        return
     conn = sqlite3.connect("expenses.db")
     cur = conn.cursor()
     cur.execute("INSERT INTO expense VALUES (NULL,?,?,?,?,?,?)", (year, month, day, category, value, concept)) # With NULL Python understands that has to increment id automatically
@@ -39,6 +41,8 @@ def delete(id): # We're gonna get id from tuple and index 0
     conn.close()
 
 def update(id, year, month, day, category, value, concept):
+    if not isinstance(year, int) or not isinstance(value, float): # If year is not an int or value is not a real number, then skip updating
+        return
     conn = sqlite3.connect("expenses.db")
     cur = conn.cursor()
     cur.execute("UPDATE expense SET year = ?, month = ?, day = ?, category = ?, value = ?, concept = ? WHERE id = ?", (year, month, day, category, value, concept, id))
