@@ -35,7 +35,11 @@ class Database:
         self.conn.commit()
         
     def update(self, id, year, month, day, category, value, concept):
-        if not isinstance(year, int) or not isinstance(value, float): # If year is not an int or value is not a real number, then skip updating
+        # If year is not an int or value is not a real number, then skip updating
+        try:
+            year = int(year)
+            value = float(value)
+        except ValueError:
             return
         self.cur.execute("UPDATE expense SET year = ?, month = ?, day = ?, category = ?, value = ?, concept = ? WHERE id = ?", (year, month, day, category, value, concept, id))
         self.conn.commit()
