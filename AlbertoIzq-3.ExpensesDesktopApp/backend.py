@@ -11,8 +11,11 @@ class Database:
 
     def insert(self, year, month, day, category, value, concept):
         # If year is not an int or value is not a real number, then skip inserting
-        #if not isinstance(year, int) or not isinstance(value, float): 
-        #    return
+        try:
+            year = int(year)
+            value = float(value)
+        except ValueError:
+            return
         self.cur.execute("INSERT INTO expense VALUES (NULL,?,?,?,?,?,?)", (year, month, day, category, value, concept)) # With NULL Python understands that has to increment id automatically
         self.conn.commit()
 
