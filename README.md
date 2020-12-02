@@ -9,3 +9,5 @@ Values stored have format:
 -Category: Restaurant, Bar, Supermarket, Transport or Other
 -Value [€]
 -Concept
+
+Check "Screenshots" folder to see how the app works
